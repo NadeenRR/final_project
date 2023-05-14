@@ -63,10 +63,11 @@ class HomeScreen extends StatelessWidget {
               height: 10,
             ),
             CustomButton(
-                heightButton: 40,
-                widthButton: 200,
-                text: 'Let\'s Start!',
-                onTap: () {})
+              heightButton: 40,
+              widthButton: 200,
+              text: 'Let\'s Start!',
+              onTap: () => Navigator.pushNamed(context, 'start-quiz'),
+            )
           ],
         ),
       ),
