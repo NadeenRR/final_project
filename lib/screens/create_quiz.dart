@@ -96,10 +96,15 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(
-                                            question.question!,
-                                            style:
-                                                const TextStyle(fontSize: 22),
+                                          SizedBox(
+                                            width: 290,
+                                            child: Text(
+                                              question.question!,
+                                              // softWrap: true,
+                                              style: const TextStyle(
+                                                fontSize: 22,
+                                              ),
+                                            ),
                                           ),
                                           IconButton(
                                             icon: Icon(
