@@ -22,13 +22,6 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
     helper = DatabaseHelper.instance;
   }
 
-  // void fetchDataFromDatabase() async {
-  //   List data = await helper.getAllQuestions();
-  //   setState(() {
-  //     myDataList = data;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,109 +71,128 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                       Question question =
                           Question.fromMap(snapshot.data[index]);
                       return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 10),
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                color: Colors.grey.shade300,
-                                borderRadius: BorderRadius.circular(8)),
-                            child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 15, vertical: 15),
-                                child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          SizedBox(
-                                            width: 290,
-                                            child: Text(
-                                              question.question!,
-                                              // softWrap: true,
-                                              style: const TextStyle(
-                                                fontSize: 22,
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Container(
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  color: Colors.grey.shade300,
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 15),
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            SizedBox(
+                                              width: 290,
+                                              child: Text(
+                                                question.question!,
+                                                // softWrap: true,
+                                                style: const TextStyle(
+                                                  fontSize: 22,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          IconButton(
-                                            icon: Icon(
-                                              Icons.delete,
-                                              color: Colors.grey.shade600,
-                                            ),
-                                            onPressed: () {
-                                              showDialog(
-                                                context: context,
-                                                builder: (context) {
-                                                  return AlertDialog(
-                                                    title: const Text(
-                                                      'Delete Question',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontSize: 25),
-                                                    ),
-                                                    content: const Text(
-                                                      'Are you sure you want to delete this question?',
-                                                      style: TextStyle(
-                                                          fontSize: 18),
-                                                    ),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        child: const Text(
-                                                          'Cancel',
-                                                          style: TextStyle(
-                                                              fontSize: 16),
-                                                        ),
+                                            IconButton(
+                                              icon: Icon(
+                                                Icons.delete,
+                                                color: Colors.grey.shade600,
+                                              ),
+                                              onPressed: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return AlertDialog(
+                                                      title: const Text(
+                                                        'Delete Question',
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontSize: 25),
                                                       ),
-                                                      TextButton(
-                                                        onPressed: () {
-                                                          setState(() {
-                                                            helper
-                                                                .deleteQuestion(
-                                                                    question
-                                                                        .id!);
-                                                          });
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        child: const Text(
-                                                            'Delete',
+                                                      content: const Text(
+                                                        'Are you sure you want to delete this question?',
+                                                        style: TextStyle(
+                                                            fontSize: 18),
+                                                      ),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                          child: const Text(
+                                                            'Cancel',
                                                             style: TextStyle(
-                                                                fontSize: 16)),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                            },
-                                          )
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      question.answerA == question.correctAnswer
-                                          ? containerTrue(question.answerA!)
-                                          : containerFalse(question.answerA!),
-                                      question.answerB == question.correctAnswer
-                                          ? containerTrue(question.answerB!)
-                                          : containerFalse(question.answerB!),
-                                      question.answerC == question.correctAnswer
-                                          ? containerTrue(question.answerC!)
-                                          : containerFalse(question.answerC!),
-                                      question.answerD == question.correctAnswer
-                                          ? containerTrue(question.answerD!)
-                                          : containerFalse(question.answerD!),
-                                    ]))),
-                      );
+                                                                fontSize: 16),
+                                                          ),
+                                                        ),
+                                                        TextButton(
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              helper
+                                                                  .deleteQuestion(
+                                                                      question
+                                                                          .id!);
+                                                            });
+
+                                                            Navigator.pop(
+                                                                context);
+                                                            const snackBar =
+                                                                SnackBar(
+                                                              content: Text(
+                                                                  'Question deleted'),
+                                                              duration:
+                                                                  Duration(
+                                                                      seconds:
+                                                                          2),
+                                                            );
+                                                            ScaffoldMessenger
+                                                                    .of(context)
+                                                                .showSnackBar(
+                                                                    snackBar);
+                                                          },
+                                                          child: const Text(
+                                                              'Delete',
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                      16)),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            )
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        question.answerA ==
+                                                question.correctAnswer
+                                            ? containerTrue(question.answerA!)
+                                            : containerFalse(question.answerA!),
+                                        question.answerB ==
+                                                question.correctAnswer
+                                            ? containerTrue(question.answerB!)
+                                            : containerFalse(question.answerB!),
+                                        question.answerC ==
+                                                question.correctAnswer
+                                            ? containerTrue(question.answerC!)
+                                            : containerFalse(question.answerC!),
+                                        question.answerD ==
+                                                question.correctAnswer
+                                            ? containerTrue(question.answerD!)
+                                            : containerFalse(question.answerD!),
+                                      ]))));
                     });
               }
             },
