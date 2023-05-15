@@ -9,7 +9,7 @@ class SoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar('Quiz App'),
+     // appBar: customAppBar('Quiz App'),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           const Text(

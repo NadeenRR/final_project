@@ -248,11 +248,13 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
   }
 
   void _submitForm() async {
+    DatabaseHelper helper = DatabaseHelper.instance;
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
 
       // print(data);
       debugPrint('save');
+
       Question question = Question(
         question: _questionController.text,
         answerA: _answerAController.text,
@@ -262,12 +264,14 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
         correctAnswer: _correctAnswer,
       );
       await DatabaseHelper.instance.insertQuestion(question.toMap());
-      debugPrint(_questionController.text);
-      debugPrint(_answerAController.text);
-      debugPrint(_answerBController.text);
-      debugPrint(_answerCController.text);
-      debugPrint(_answerDController.text);
-      debugPrint(_correctAnswer);
+      // debugPrint(_questionController.text);
+      // debugPrint(_answerAController.text);
+      // debugPrint(_answerBController.text);
+      // debugPrint(_answerCController.text);
+      // debugPrint(_answerDController.text);
+      // debugPrint(_correctAnswer);
+
+      debugPrint(question.id.toString());
 
       Navigator.pop(context);
     }

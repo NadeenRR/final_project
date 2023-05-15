@@ -61,19 +61,22 @@ Container containerFalse(String text) {
   );
 }
 
-Container answerContainer(String answer) {
-  return Container(
-    width: double.infinity,
-    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-    margin: const EdgeInsets.symmetric(horizontal: 10 ,vertical: 6),
-    decoration: BoxDecoration(
-        border: Border.all(color: KPrimaryColor),
-        borderRadius: BorderRadius.circular(8)),
-    child: Text(
-      answer,
-      style: const TextStyle(
-        color: Colors.black,
-        fontSize: 20,
+InkWell answerContainer(String answer, Function() onTap) {
+  return InkWell(
+    onTap: onTap,
+    child: Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10 ,vertical: 6),
+      decoration: BoxDecoration(
+          border: Border.all(color: KPrimaryColor),
+          borderRadius: BorderRadius.circular(8)),
+      child: Text(
+        answer,
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 20,
+        ),
       ),
     ),
   );
