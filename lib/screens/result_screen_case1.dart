@@ -3,12 +3,14 @@ import 'package:final_project/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class ResultScreenCase1 extends StatelessWidget {
-  const ResultScreenCase1({super.key});
+  const ResultScreenCase1({super.key, this.score = 0, this.totalQuestions});
+  final int score;
+  final int? totalQuestions;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar('Quiz App'),
+      //   appBar: customAppBar('Quiz App'),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           const Text(
@@ -28,8 +30,8 @@ class ResultScreenCase1 extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const Text(
-            'Your Score: 9/10',
+          Text(
+            'Your Score:  $score / $totalQuestions',
             style: TextStyle(
                 color: Colors.green, fontSize: 22, fontWeight: FontWeight.w600),
           ),

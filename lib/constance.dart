@@ -61,13 +61,16 @@ Container containerFalse(String text) {
   );
 }
 
-InkWell answerContainer(String answer, Function() onTap) {
+InkWell answerContainer(
+  String answer,
+  Function() onTap,
+) {
   return InkWell(
     onTap: onTap,
     child: Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      margin: const EdgeInsets.symmetric(horizontal: 10 ,vertical: 6),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
           border: Border.all(color: KPrimaryColor),
           borderRadius: BorderRadius.circular(8)),

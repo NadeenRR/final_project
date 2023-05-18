@@ -4,12 +4,13 @@ import '../constance.dart';
 import '../widgets/custom_button.dart';
 
 class ResultScreenCase2 extends StatelessWidget {
-  const ResultScreenCase2({super.key});
-
+  const ResultScreenCase2({super.key, this.score = 0, this.totalQuestions});
+  final int score;
+  final int? totalQuestions;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar('Quiz App'),
+      //  appBar: customAppBar('Quiz App'),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           const Text(
@@ -29,9 +30,9 @@ class ResultScreenCase2 extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const Text(
-            'Your Score: 5/10',
-            style: TextStyle(
+          Text(
+            'Your Score:  $score / $totalQuestions',
+            style: const TextStyle(
                 color: Colors.green, fontSize: 22, fontWeight: FontWeight.w600),
           ),
           const Text(

@@ -61,7 +61,7 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
             }),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (!snapshot.hasData) {
-                return const CircularProgressIndicator();
+                return const Center(child: CircularProgressIndicator());
               } else {
                 return ListView.builder(
                     // shrinkWrap: true,
@@ -93,7 +93,7 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                                             SizedBox(
                                               width: 290,
                                               child: Text(
-                                                question.question!,
+                                                question.question,
                                                 // softWrap: true,
                                                 style: const TextStyle(
                                                   fontSize: 22,
@@ -178,20 +178,20 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                                         ),
                                         question.answerA ==
                                                 question.correctAnswer
-                                            ? containerTrue(question.answerA!)
-                                            : containerFalse(question.answerA!),
+                                            ? containerTrue(question.answerA)
+                                            : containerFalse(question.answerA),
                                         question.answerB ==
                                                 question.correctAnswer
-                                            ? containerTrue(question.answerB!)
-                                            : containerFalse(question.answerB!),
+                                            ? containerTrue(question.answerB)
+                                            : containerFalse(question.answerB),
                                         question.answerC ==
                                                 question.correctAnswer
-                                            ? containerTrue(question.answerC!)
-                                            : containerFalse(question.answerC!),
+                                            ? containerTrue(question.answerC)
+                                            : containerFalse(question.answerC),
                                         question.answerD ==
                                                 question.correctAnswer
-                                            ? containerTrue(question.answerD!)
-                                            : containerFalse(question.answerD!),
+                                            ? containerTrue(question.answerD)
+                                            : containerFalse(question.answerD),
                                       ]))));
                     });
               }

@@ -1,6 +1,6 @@
 import 'package:final_project/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 import '../constance.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -43,9 +43,10 @@ class HomeScreen extends StatelessWidget {
               title: Text('Statr Quiz'),
             ),
             const Divider(thickness: 1),
-            const ListTile(
-              leading: Icon(Icons.exit_to_app),
-              title: Text('Exit'),
+            ListTile(
+              leading: const Icon(Icons.exit_to_app),
+              title: const Text('Exit'),
+              onTap: () => SystemNavigator.pop(),
             ),
           ],
         ),

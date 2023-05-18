@@ -6,6 +6,7 @@ import 'package:final_project/screens/result_screen_case2.dart';
 import 'package:final_project/screens/result_screen_case3.dart';
 import 'package:final_project/screens/sory_screen.dart';
 import 'package:final_project/screens/statr_quiz_screen.dart';
+import 'package:final_project/screens/test.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         'result-case2': (context) => const ResultScreenCase2(),
         'result-case3': (context) => const ResultScreenCase3(),
         'sory': (context) => const SoryScreen(),
+        // 'start-quiz': (context) => const Test(),
         'start-quiz': (context) => const StartQuizScreen(),
       },
     );

@@ -3,6 +3,7 @@ import 'package:path/path.dart';
 
 class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._getInstance();
+  
   static Database? _database;
 
   // Private constractor

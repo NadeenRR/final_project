@@ -1,108 +1,155 @@
-import 'package:flutter/material.dart';
+// import 'package:final_project/model/questions.dart';
+// import 'package:final_project/screens/result_screen_case1.dart';
+// import 'package:final_project/screens/result_screen_case2.dart';
+// import 'package:final_project/screens/result_screen_case3.dart';
+// import 'package:final_project/screens/sory_screen.dart';
+// import 'package:flutter/material.dart';
 
-class MyWidget extends StatefulWidget {
-  const MyWidget({super.key});
+// import '../constance.dart';
+// import '../helper/database_helper.dart';
 
-  @override
-  _MyWidgetState createState() => _MyWidgetState();
-}
+// class Test extends StatefulWidget {
+//   const Test({super.key});
 
-class _MyWidgetState extends State<MyWidget> {
-  String _selectedItem = 'A';
-  String _isChecked = '';
+//   @override
+//   State<Test> createState() => _TestState();
+// }
 
-  TextEditingController _textEditingController1 = TextEditingController();
-  TextEditingController _textEditingController2 = TextEditingController();
-  TextEditingController _textEditingController3 = TextEditingController();
-  TextEditingController _textEditingController4 = TextEditingController();
-  String _correctAnswer = '';
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            TextFormField(
-              controller: _textEditingController1,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 8),
-            TextFormField(
-              controller: _textEditingController2,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 8),
-            TextFormField(
-              controller: _textEditingController3,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 8),
-            TextFormField(
-              controller: _textEditingController4,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 8),
-            Row(
-              children: [
-                const Text(
-                  'Select the correct answe: ',
-                  style: TextStyle(fontSize: 18),
-                ),
-                Expanded(
-                  child: DropdownButtonFormField<String>(
-                    value: _selectedItem,
-                    items: [
-                      DropdownMenuItem(
-                        child: Text("A"),
-                        value: "A",
-                      ),
-                      DropdownMenuItem(
-                        child: Text("B"),
-                        value: "B",
-                      ),
-                      DropdownMenuItem(
-                        child: Text("C"),
-                        value: "C",
-                      ),
-                      DropdownMenuItem(
-                        child: Text("D"),
-                        value: "D",
-                      ),
-                    ],
-                    onChanged: (value) {
-                      setState(() {
-                        _selectedItem = value!;
-                        if (_selectedItem == "A") {
-                          _isChecked = _textEditingController1.text;
-                        } else if (_selectedItem == "B") {
-                          _isChecked = _textEditingController2.text;
-                        } else if (_selectedItem == "C") {
-                          _isChecked = _textEditingController3.text;
-                        } else if (_selectedItem == "D") {
-                          _isChecked = _textEditingController4.text;
-                        }
-                        _correctAnswer = _isChecked;
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 8),
-            Text("Checkbox value: $_correctAnswer"),
-          ],
-        ),
-      ),
-    );
-  }
-}
+// class _TestState extends State<Test> {
+//   late DatabaseHelper helper;
+//   Question? question = Question();
+//   int questionIndex = 0;
+//   int score = 0;
+//   int totalScore = 0;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     helper = DatabaseHelper.instance;
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: customAppBar('Quiz App'),
+//       body: FutureBuilder(
+//           future: helper.getAllQuestions(),
+//           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+//             Question question2 = Question.fromMap(snapshot.data[questionIndex]);
+//             final questions = snapshot.data;
+//             if (questions.length < 5 || snapshot.data.isEmpty) {
+//               return const SoryScreen();
+//             } else {
+//               questionIndex < questions.length
+//                   ? PageView.builder(
+//                       itemCount: snapshot.data.length,
+//                       physics: const NeverScrollableScrollPhysics(),
+//                       itemBuilder: (context, index) {
+//                         return Center(
+//                           child: Column(
+//                               mainAxisAlignment: MainAxisAlignment.center,
+//                               children: [
+//                                 RichText(
+//                                     text: TextSpan(children: [
+//                                   TextSpan(
+//                                       text: 'Question ${questionIndex + 1} ',
+//                                       style: const TextStyle(
+//                                           color: Colors.teal,
+//                                           fontSize: 22,
+//                                           fontWeight: FontWeight.bold)),
+//                                   TextSpan(
+//                                       text: ' / ${questions.length.toString()}',
+//                                       style: const TextStyle(
+//                                           color: Colors.grey,
+//                                           fontSize: 18,
+//                                           fontWeight: FontWeight.w400))
+//                                 ])),
+//                                 Container(
+//                                   width: double.infinity,
+//                                   padding: const EdgeInsets.symmetric(
+//                                       horizontal: 10, vertical: 10),
+//                                   margin: const EdgeInsets.symmetric(
+//                                       vertical: 10, horizontal: 10),
+//                                   decoration: BoxDecoration(
+//                                       color: Colors.teal,
+//                                       borderRadius: BorderRadius.circular(8)),
+//                                   child: Text(
+//                                     question2.question!,
+//                                     style: const TextStyle(
+//                                         color: Colors.white,
+//                                         fontSize: 22,
+//                                         fontWeight: FontWeight.bold),
+//                                   ),
+//                                 ),
+//                                 answerContainer(
+//                                     question2.answerA!,
+//                                     question2.answerA == question2.correctAnswer
+//                                         ? incremt
+//                                         : () {
+//                                             setState(() {
+//                                               questionIndex++;
+//                                             });
+//                                           }),
+//                                 answerContainer(
+//                                     question2.answerB!,
+//                                     question2.answerB == question2.correctAnswer
+//                                         ? incremt
+//                                         : () {
+//                                             setState(() {
+//                                               questionIndex++;
+//                                             });
+//                                           }),
+//                                 answerContainer(
+//                                     question2.answerC!,
+//                                     question2.answerC == question2.correctAnswer
+//                                         ? incremt
+//                                         : () {
+//                                             setState(() {
+//                                               questionIndex++;
+//                                             });
+//                                           }),
+//                                 answerContainer(
+//                                     question2.answerD!,
+//                                     question2.answerD == question2.correctAnswer
+//                                         ? incremt
+//                                         : () {
+//                                             setState(() {
+//                                               questionIndex++;
+//                                             });
+//                                           }),
+//                               ]),
+//                         );
+//                       })
+//                   : const CircularProgressIndicator();
+
+//               if (score < 5) {
+//                 return ResultScreenCase3(
+//                   score: score,
+//                   totalQuestions: questions.length,
+//                 );
+//               } else if (score == 5) {
+//                 return ResultScreenCase2(
+//                   score: score,
+//                   totalQuestions: questions.length,
+//                 );
+//               } else if (score > 5) {
+//                 return ResultScreenCase1(
+//                   score: score,
+//                   totalQuestions: questions.length,
+//                 );
+//               }
+//             }
+//             return const CircularProgressIndicator();
+//           }),
+//     );
+//   }
+
+//   incremt() {
+//     setState(() {
+//       score++;
+//       //totalScore++;
+//     });
+//     questionIndex++;
+//     print(score);
+//   }
+// }

@@ -35,12 +35,7 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
   final TextEditingController _answerBController = TextEditingController();
   final TextEditingController _answerCController = TextEditingController();
   final TextEditingController _answerDController = TextEditingController();
-  String? _correctAnswer;
-
-  // final List<String> list = <String>['A', 'B', 'C', 'D'];
-  // String dropdownValue = 'A';
-
-  // List<String> data = [];
+   String _correctAnswer = '';
 
   @override
   Widget build(BuildContext context) {
@@ -251,10 +246,7 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
     DatabaseHelper helper = DatabaseHelper.instance;
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-
-      // print(data);
       debugPrint('save');
-
       Question question = Question(
         question: _questionController.text,
         answerA: _answerAController.text,
@@ -263,17 +255,27 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
         answerD: _answerDController.text,
         correctAnswer: _correctAnswer,
       );
-      await DatabaseHelper.instance.insertQuestion(question.toMap());
-      // debugPrint(_questionController.text);
-      // debugPrint(_answerAController.text);
-      // debugPrint(_answerBController.text);
-      // debugPrint(_answerCController.text);
-      // debugPrint(_answerDController.text);
-      // debugPrint(_correctAnswer);
 
-      debugPrint(question.id.toString());
+      await DatabaseHelper.instance.insertQuestion(question.toMap());
+
+      List<Map<String, dynamic>> questions =
+          await DatabaseHelper.instance.getAllQuestions();
+
+      //int id = questions.id;
+      print('ID:{ $questions.id}');
+
+      // question.forEach((question) {
+      //   debugPrint(question['id']);
+      //   debugPrint(_questionController.text);
+      //   debugPrint(_answerAController.text);
+      //   debugPrint(_answerBController.text);
+      //   debugPrint(_answerCController.text);
+      //   debugPrint(_answerDController.text);
+      //   debugPrint(_correctAnswer);
+      // });
 
       Navigator.pop(context);
     }
   }
 }
+
