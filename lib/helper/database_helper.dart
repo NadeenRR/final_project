@@ -3,26 +3,31 @@ import 'package:path/path.dart';
 
 class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._getInstance();
-  
+
+  static Database? _database;
 
   // Private constractor
   DatabaseHelper._getInstance();
 
+  Future<Database> get database async {
+    if (_database != null) {
+      return _database!;
+    }
 
-  // static  Database? _database;
-   Database? _database;
+    _database = await _initDatabase();
+    return _database!;
+  }
 
-  // this opens the database (and creates it if it doesn't exist)
-  Future<void> init() async {
+  Future<Database> _initDatabase() async {
     final String path = join(await getDatabasesPath(), 'questions.db');
-    _database = await openDatabase(
+    return await openDatabase(
       path,
       version: 1,
-      onCreate: _onCreate,
+      onCreate: _createDatabase,
     );
   }
 
-  Future _onCreate(Database db, int version) async {
+  Future<void> _createDatabase(Database db, int version) async {
     await db.execute('''
       CREATE TABLE Questions (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -36,17 +41,18 @@ class DatabaseHelper {
     ''');
   }
 
-
-
   Future<int> insertQuestion(Map<String, dynamic> question) async {
-    return await _database!.insert('Questions', question);
+    final Database db = await instance.database;
+    return await db.insert('Questions', question);
   }
 
   Future<List<Map<String, dynamic>>> getAllQuestions() async {
-    return await _database!.query('Questions');
+    final Database db = await instance.database;
+    return await db.query('Questions');
   }
 
   Future<int> deleteQuestion(int id) async {
-    return await _database!.delete('Questions', where: 'id = ?', whereArgs: [id]);
+    final Database db = await instance.database;
+    return await db.delete('Questions', where: 'id = ?', whereArgs: [id]);
   }
 }

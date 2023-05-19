@@ -64,17 +64,17 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                 return const Center(child: CircularProgressIndicator());
               } else {
                 return ListView.builder(
-                    // shrinkWrap: true,
+                  // shrinkWrap: true,
                     physics: const BouncingScrollPhysics(),
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
                       Question question =
-                          Question.fromMap(snapshot.data[index]);
+                      Question.fromMap(snapshot.data[index]);
                       return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: Container(
                               margin:
-                                  const EdgeInsets.symmetric(horizontal: 10),
+                              const EdgeInsets.symmetric(horizontal: 10),
                               width: double.infinity,
                               decoration: BoxDecoration(
                                   color: Colors.grey.shade300,
@@ -84,11 +84,11 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                                       horizontal: 15, vertical: 15),
                                   child: Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: [
                                         Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                           children: [
                                             SizedBox(
                                               width: 250,
@@ -114,7 +114,7 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                                                         'Delete Question',
                                                         style: TextStyle(
                                                             fontWeight:
-                                                                FontWeight.w500,
+                                                            FontWeight.w500,
                                                             fontSize: 25),
                                                       ),
                                                       content: const Text(
@@ -139,31 +139,31 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                                                             setState(() {
                                                               helper
                                                                   .deleteQuestion(
-                                                                      question
-                                                                          .id!);
+                                                                  question
+                                                                      .id!);
                                                             });
 
                                                             Navigator.pop(
                                                                 context);
                                                             const snackBar =
-                                                                SnackBar(
+                                                            SnackBar(
                                                               content: Text(
                                                                   'Question deleted'),
                                                               duration:
-                                                                  Duration(
-                                                                      seconds:
-                                                                          2),
+                                                              Duration(
+                                                                  seconds:
+                                                                  2),
                                                             );
                                                             ScaffoldMessenger
-                                                                    .of(context)
+                                                                .of(context)
                                                                 .showSnackBar(
-                                                                    snackBar);
+                                                                snackBar);
                                                           },
                                                           child: const Text(
                                                               'Delete',
                                                               style: TextStyle(
                                                                   fontSize:
-                                                                      16)),
+                                                                  16)),
                                                         ),
                                                       ],
                                                     );
@@ -177,19 +177,19 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                                           height: 5,
                                         ),
                                         question.answerA ==
-                                                question.correctAnswer
+                                            question.correctAnswer
                                             ? containerTrue(question.answerA)
                                             : containerFalse(question.answerA),
                                         question.answerB ==
-                                                question.correctAnswer
+                                            question.correctAnswer
                                             ? containerTrue(question.answerB)
                                             : containerFalse(question.answerB),
                                         question.answerC ==
-                                                question.correctAnswer
+                                            question.correctAnswer
                                             ? containerTrue(question.answerC)
                                             : containerFalse(question.answerC),
                                         question.answerD ==
-                                                question.correctAnswer
+                                            question.correctAnswer
                                             ? containerTrue(question.answerD)
                                             : containerFalse(question.answerD),
                                       ]))));

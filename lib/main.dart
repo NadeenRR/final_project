@@ -1,4 +1,3 @@
-import 'package:final_project/helper/database_helper.dart';
 import 'package:final_project/screens/add_question.dart';
 import 'package:final_project/screens/create_quiz.dart';
 import 'package:final_project/screens/home_screen.dart';
@@ -10,13 +9,7 @@ import 'package:final_project/screens/statr_quiz_screen.dart';
 import 'package:final_project/screens/test.dart';
 import 'package:flutter/material.dart';
 
-
-DatabaseHelper helper = DatabaseHelper.instance;
-
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  await helper.init();
+void main() {
   runApp(const MyApp());
 }
 
