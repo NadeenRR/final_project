@@ -91,7 +91,7 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             SizedBox(
-                                              width: 290,
+                                              width: 250,
                                               child: Text(
                                                 question.question,
                                                 // softWrap: true,
